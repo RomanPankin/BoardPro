@@ -22,20 +22,22 @@
 
                <ng-container *ngIf="!(isLoading | async)">
                   <div class="suggetion-options -g-fit">
-                     <ng-container *ngIf="!(heroOptions | async)?.length">
-                        <div class="no-data">There are no heroes to select</div>
-                     </ng-container>
+                     <div class="suggetion-options-data">
+                        <ng-container *ngIf="!(heroOptions | async)?.length">
+                           <div class="no-data">There are no heroes to select</div>
+                        </ng-container>
 
-                     <ng-container *ngIf="(visibleQuestions | async)?.length">
-                        <a *ngFor="let option of heroOptions | async"
-                           class="suggetion-option {{ option.id == (heroSelectedId | async) ? 'suggetion-option-selected' : ''}}"
-                           tabindex="0"
-                           (click)="selectHero(option)"
-                           (keydown.enter)="selectHero(option)">
-                           <div class="suggestion-option-name">{{ option.name }}</div>
-                           <div class="suggestion-option-person">{{ option.biography?.fullName }}</div>
-                        </a>
-                     </ng-container>
+                        <ng-container *ngIf="(visibleQuestions | async)?.length">
+                           <a *ngFor="let option of heroOptions | async"
+                              class="suggetion-option {{ option.id == (heroSelectedId | async) ? 'suggetion-option-selected' : ''}}"
+                              tabindex="0"
+                              (click)="selectHero(option)"
+                              (keydown.enter)="selectHero(option)">
+                              <div class="suggestion-option-name">{{ option.name }}</div>
+                              <div class="suggestion-option-person">{{ option.biography?.fullName }}</div>
+                           </a>
+                        </ng-container>
+                     </div>
                   </div>
                </ng-container>
             </ng-container>
