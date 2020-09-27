@@ -1,0 +1,164 @@
+@import (reference) "~src/styles/global-definitions.less";
+
+@block-margin: 4px;
+@number-dim: 32px;
+
+.page {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100%;
+   box-sizing: border-box;
+}
+
+.dialog {
+   position: relative;
+   min-width: 450px;
+   max-width: 800px;
+   width: 80%;
+}
+
+.header {
+   margin-bottom: @block-margin;
+   padding: @padding-big @padding-big * 2;
+   font-size: @font-size-big;
+}
+
+
+/* Common layout */
+.full-center {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-grow: 1;
+}
+
+/* Data */
+.data-block {
+   padding: @padding-big * 2;
+   min-height: 500px;
+}
+
+.block {
+   background: white;
+   box-shadow: @shadow-card;
+   border-radius: @border-radius;
+   overflow: hidden;
+}
+
+.suggestion-block {
+   margin-right: @block-margin;
+}
+
+.suggestion-block, .question-block {
+   flex-basis: 1px;
+}
+
+/* Options */
+.suggetion-options {
+   overflow: auto;
+}
+
+.suggetion-option {
+   display: block;
+   padding: @padding-big 0;
+   border-bottom: 1px solid fade(@color-gray-dark, 20%);
+   color: @color-text;
+   cursor: pointer;
+}
+
+.suggetion-option.suggetion-option-selected {
+   background-color: fade(@color-blue, 80%);
+   color: white;
+}
+
+:not(.suggetion-option-selected) > .suggestion-option-person {
+   color: @color-gray-dark;
+}
+
+.suggetion-option:not(.suggetion-option-selected):hover,
+.suggetion-option:not(.suggetion-option-selected):focus {
+   background-color: fade(@color-blue, 10%);
+}
+
+.no-data {
+   font-size: @font-size-big;
+   color: fade(@color-gray-dark, 50%);
+   padding: @padding-big * 2 @padding-big;
+   text-align: center;
+}
+
+/* Preview */
+.preview {
+   height: 180px;
+   background-size: contain;
+   background-position: center center;
+   background-repeat: no-repeat;
+   margin-bottom: @padding-big;
+   flex-shrink: 0;
+}
+
+/* Questions */
+.row {
+   display: flex;
+   justify-content: left;
+   align-items: center;
+   margin-bottom: @padding-normal;
+}
+
+.number {
+   display: inline-block;
+   background-color: @color-blue;
+   color: white;
+   font-weight: bold;
+   width: @number-dim;
+   height: @number-dim;
+   flex-shrink: 0;
+   border-radius: @number-dim/2;
+   text-align: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right: @padding-big;
+}
+
+/* Actions */
+.action {
+   justify-content: flex-end;
+}
+
+button {
+   margin-left: @padding-normal;
+}
+
+@media (max-width: 576px) {
+   .page {
+      align-items: flex-start;
+      padding: @padding-big;
+   }
+
+   .dialog {
+      min-width: auto;
+      width: 100%;
+   }
+
+   .data {
+      flex-direction: column;
+   }
+
+   .block {
+      margin-bottom: @padding-normal;
+      margin-right: 0px;
+      flex-basis: auto;
+   }
+
+   .suggestion-block {
+      min-height: 200px;
+      max-height: 300px;
+   }
+
+   .question-block {
+      min-height: 200px;
+   }
+}

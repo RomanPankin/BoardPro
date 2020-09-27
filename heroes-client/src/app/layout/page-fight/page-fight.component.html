@@ -1,0 +1,77 @@
+<div class="page">
+   <div class="dialog" @appearanceAnimation>
+      <div class="header block -g-horizontal">
+         <div class="header-time">0:{{ ((leftTime | async) < 10 ? '0' : '') + (leftTime | async) }}</div>
+         <div class="-g-fit"></div>
+         <div class="header-time" *ngIf="(correctHero | async)">{{ currentQuestion | async}} question<span *ngIf="(currentQuestion | async) > 1">s</span></div>
+      </div>
+      <div class="data -g-horizontal">
+         <!-- User's data -->
+         <div class="suggestion-block data-block block -g-fit -g-vertical">
+            <ng-container *ngIf="(allQuestions | async).length">
+               <app-input [placeholder]="'Type the super hero name (like batman)'"
+                        [value]="heroSearchValue"></app-input>
+
+               <ng-container *ngIf="(isLoading | async)">
+                  <div class="full-center -g-vertical">
+                     <div>
+                        <app-spinner></app-spinner>
+                     </div>
+                  </div>
+               </ng-container>
+
+               <ng-container *ngIf="!(isLoading | async)">
+                  <div class="suggetion-options -g-fit">
+                     <ng-container *ngIf="!(heroOptions | async)?.length">
+                        <div class="no-data">There are no heroes to select</div>
+                     </ng-container>
+
+                     <ng-container *ngIf="(visibleQuestions | async)?.length">
+                        <a *ngFor="let option of heroOptions | async"
+                           class="suggetion-option {{ option.id == (heroSelectedId | async) ? 'suggetion-option-selected' : ''}}"
+                           tabindex="0"
+                           (click)="selectHero(option)"
+                           (keydown.enter)="selectHero(option)">
+                           <div class="suggestion-option-name">{{ option.name }}</div>
+                           <div class="suggestion-option-person">{{ option.biography?.fullName }}</div>
+                        </a>
+                     </ng-container>
+                  </div>
+               </ng-container>
+            </ng-container>
+         </div>
+
+         <!-- Question block -->
+         <div class="question-block data-block block -g-vertical -g-fit">
+            <ng-container *ngIf="(correctHero | async)">
+               <!-- Image -->
+               <div class="preview" [style.backgroundImage]="correctHeroPreview | async"></div>
+
+               <!-- Questions-->
+               <div class="-g-fit">
+                  <div class="row" *ngFor="let question of visibleQuestions | async; let i = index">
+                     <span class="number">{{ i+1 }}</span>{{ question }}
+                  </div>
+               </div>
+
+               <!-- Actions -->
+               <div class="action -g-horizontal">
+                  <button mat-raised-button color="primary"
+                     *ngIf="(currentQuestion | async) < (allQuestions | async).length"
+                     (click)="nextQuestion()">More data</button>
+                  <button mat-raised-button color="primary" [disabled]="!(heroSelectedId | async)" (click)="sendResult()">I'm ready</button>
+               </div>
+            </ng-container>
+
+            <ng-container *ngIf="!(correctHero | async)">
+               <div class="full-center -g-vertical">
+                  <div>
+                     <app-spinner></app-spinner>
+                  </div>
+                  <div>Choosing the hero...</div>
+               </div>
+            </ng-container>
+         </div>
+      </div>
+   </div>
+</div>

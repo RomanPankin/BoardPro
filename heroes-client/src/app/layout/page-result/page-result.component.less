@@ -1,0 +1,98 @@
+@import (reference) "~src/styles/global-definitions.less";
+
+/* Dialog */
+.page {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   overflow-x: hidden;
+}
+
+.slide {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+}
+
+.dialog {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   width: 450px;
+   transform: translate(-50%, -50%);
+}
+
+.content {
+   background: white;
+   box-shadow: @shadow-card;
+   border-radius: @border-radius;
+   overflow: hidden;
+   padding: @padding-big * 4;
+}
+
+@media (max-width: 576px) {
+   .dialog {
+      position: relative;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      transform: translate(0, 0);
+      padding: @padding-big;
+      box-sizing: border-box;
+      box-shadow: none;
+      border: none;
+      background: transparent;
+   }
+}
+
+/* Content */
+h1 {
+   text-align: center;
+   margin-bottom: @padding-big * 4;
+}
+
+p {
+   margin-bottom: @padding-big * 2;
+}
+
+.section {
+   margin-bottom: @padding-big * 4;
+   text-align: center;
+}
+
+.actions {
+   text-align: center;
+}
+
+/* Preview */
+.preview {
+   height: 180px;
+   background-size: contain;
+   background-position: center center;
+   background-repeat: no-repeat;
+   margin-bottom: @padding-big;
+}
+
+.info {
+   text-align: center;
+}
+
+/* Score */
+h1 {
+   margin-bottom: @padding-big;
+}
+
+.score {
+   text-align: center;
+   font-size: @font-size-big * 2;
+   margin-bottom: @padding-big * 2;
+}
+
+.score-status-success {
+   color: green;
+}
+
+.score-status-fail, score-status-timeout {
+   color: red;
+}
+

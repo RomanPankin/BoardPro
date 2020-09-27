@@ -1,0 +1,56 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Hero {
+  appearance: HeroAppearance!
+  biography: HeroBiography!
+  connections: HeroConnections!
+  id: String!
+  image: HeroImage!
+  name: String!
+  powerstat: HeroPower!
+  work: HeroWork!
+}
+
+type HeroAppearance {
+  gender: String
+  race: String
+}
+
+type HeroBiography {
+  aliases: [String!]!
+  alignment: String!
+  firstAppearance: String!
+  fullName: String!
+  placeOfBirth: String!
+  publisher: String!
+  url: String!
+}
+
+type HeroConnections {
+  relatives: String!
+}
+
+type HeroImage {
+  url: String!
+}
+
+type HeroPower {
+  combat: Int!
+  durability: Int!
+  intelligence: Int!
+  power: Int!
+  speed: Int!
+  strength: Int!
+}
+
+type HeroWork {
+  occupation: String!
+}
+
+type Query {
+  hero(id: String!): Hero!
+  heroes(name: String!): [Hero!]!
+  random: Hero!
+}

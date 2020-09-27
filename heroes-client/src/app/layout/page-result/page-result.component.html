@@ -1,0 +1,27 @@
+<div class="page">
+   <div class="dialog">
+      <div class="content" @appearanceAnimation>
+         <h1 *ngIf="status == GameStatus.Success">Сongratulations</h1>
+         <h1 *ngIf="status == GameStatus.Fail">Unfortunately</h1>
+         <h1 *ngIf="status == GameStatus.Timeout">Time is over</h1>
+
+         <!-- Score -->
+         <div class="score score-status-{{ status }}">{{ score }}</div>
+
+         <div class="section">
+            <!-- Image -->
+            <div class="preview" [style.backgroundImage]="heroPreview | async"></div>
+
+            <!-- Info -->
+            <div class="info">
+               <div>{{ (hero | async)?.name }}</div>
+               <div>{{ (hero | async)?.biography.fullName }}</div>
+            </div>
+         </div>
+
+         <div class="actions">
+            <button mat-raised-button color="primary" [routerLink]="['/fight']">New game</button>
+         </div>
+      </div>
+   </div>
+</div>
